@@ -16,7 +16,7 @@ class App extends React.Component {
 
   render() {
     const { user, isAuthenticated, isLoading } = this.props.auth0;
-    console.log('app', this.props);
+    console.log('app', user, isLoading);
     return(
       <>
 
