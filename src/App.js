@@ -4,6 +4,7 @@ import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import BestBooks from './BestBooks.js';
 import Profile from './Profile.js';
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,8 +13,20 @@ import {
 import { withAuth0 } from '@auth0/auth0-react';
 
 
-class App extends React.Component {
 
+class App extends React.Component {
+makeRequest = async() =>{
+  const {getIdTokenClaims} = this.props.auth0;
+  let tokenClaims = await getIdTokenClaims();
+  const jwt = tokenClaims.__raw;
+
+  const config = {
+    headers: {"Authorization": `Bearer ${jwt}` }
+  };
+  const serverResponse = await axios.get('http://localhost:3001/test', config);
+
+  console.log(serverResponse);
+}
   render() {
     const { user, isAuthenticated, isLoading } = this.props.auth0;
     console.log('app', user, isLoading);
@@ -33,6 +46,8 @@ class App extends React.Component {
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             </Switch>
+            
+            <button onClick={this.makeRequest}>Make request to server</button>
             <Footer />
           </IsLoadingAndError>
         </Router>
