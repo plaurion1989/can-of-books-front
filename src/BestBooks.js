@@ -100,8 +100,8 @@ class MyFavoriteBooks extends React.Component {
                 <h2>{book.description}</h2>
                 {/* <p>{book.status}</p> */}
                 <p>{book.email}</p>
-              </Carousel.Caption>
               <Button variant="danger" onClick={() => this.deleteBook(book._id)}>Burn Book!</Button>
+              </Carousel.Caption>
             </Carousel.Item>)) : ''}
         </Carousel>
         <BookFormModal showModal={this.state.showModal} toggleShow={this.toggleShow} onSubmit={this.onSubmit} />
