@@ -66,7 +66,15 @@ class MyFavoriteBooks extends React.Component {
 
 
   //--------------------Delete Stuff from Carousel------------------
-
+  
+  
+  deleteBook = async (id) => {
+    let config = await this.getConfig();
+    let response = await axios.delete(`http://localhost:3001/books/${id}`, config);
+    console.log(response);
+    let updatedArray = this.state.bookData.filter(book => book._id !== id);
+    this.setState({bookData: updatedArray});
+  }
 
   
 
@@ -93,6 +101,7 @@ class MyFavoriteBooks extends React.Component {
                 {/* <p>{book.status}</p> */}
                 <p>{book.email}</p>
               </Carousel.Caption>
+              <Button variant="danger" onClick={() => this.deleteBook(book._id)}>Burn Book!</Button>
             </Carousel.Item>)) : ''}
         </Carousel>
         <BookFormModal showModal={this.state.showModal} toggleShow={this.toggleShow} onSubmit={this.onSubmit} />
