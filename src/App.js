@@ -46,8 +46,6 @@ makeRequest = async() =>{
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             </Switch>
-            
-            <button onClick={this.makeRequest}>Make request to server</button>
             <Footer />
           </IsLoadingAndError>
         </Router>
