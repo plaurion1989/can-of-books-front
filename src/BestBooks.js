@@ -62,8 +62,6 @@ class MyFavoriteBooks extends React.Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.name.value);
-    console.log(e.target.description.value);
     let data = {
       name: e.target.name.value,
       description: e.target.description.value
